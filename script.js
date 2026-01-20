@@ -363,12 +363,6 @@ petCards.forEach(card => {
 // 초기화
 updateNavOnTop();
 
-// 블로그 카드 스크롤 애니메이션
-const blogCards = document.querySelectorAll('.blog-card');
-blogCards.forEach(card => {
-    card.classList.add('scroll-animation');
-});
-
 // 블로그 섹션 스크롤 시 현재 보고 있는 카드 하이라이트
 const blogSection = document.getElementById('blog');
 
