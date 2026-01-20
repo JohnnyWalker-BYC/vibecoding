@@ -369,41 +369,7 @@ blogCards.forEach(card => {
     card.classList.add('scroll-animation');
 });
 
-// 블로그 카드 읽기 시간 업데이트 (실제 콘텐츠 길이 기반)
-document.addEventListener('DOMContentLoaded', () => {
-    const blogCards = document.querySelectorAll('.blog-card');
-    
-    blogCards.forEach(card => {
-        const content = card.querySelector('.blog-content');
-        if (content) {
-            const text = content.innerText;
-            const wordCount = text.split(/\s+/).length;
-            const readingTime = Math.ceil(wordCount / 200); // 분당 200단어 기준
-            
-            const metaTime = card.querySelector('.blog-meta span:last-child');
-            if (metaTime) {
-                metaTime.textContent = `⏱️ ${readingTime}분 읽기`;
-            }
-        }
-    });
-});
-
-// 블로그 카드 클릭 시 부드러운 확장 효과
-blogCards.forEach(card => {
-    let isExpanded = false;
-    const content = card.querySelector('.blog-content');
-    
-    if (content) {
-        const originalMaxHeight = content.style.maxHeight || 'none';
-        
-        // 초기에는 콘텐츠를 보여줌 (SEO를 위해)
-        content.style.maxHeight = 'none';
-        content.style.overflow = 'visible';
-    }
-});
-
-// 블로그 섹션 스크롤 시 읽기 진행도 표시
-let lastScrollPosition = 0;
+// 블로그 섹션 스크롤 시 현재 보고 있는 카드 하이라이트
 const blogSection = document.getElementById('blog');
 
 if (blogSection) {
@@ -412,12 +378,27 @@ if (blogSection) {
         
         blogCards.forEach(card => {
             const rect = card.getBoundingClientRect();
-            const isInViewport = rect.top >= 0 && rect.bottom <= window.innerHeight;
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
             
-            if (isInViewport) {
-                card.style.borderColor = 'var(--primary-color)';
+            // 카드가 화면에 보이는지 확인 (일부라도 보이면)
+            const isVisible = rect.top < windowHeight && rect.bottom > 0;
+            
+            if (isVisible) {
+                // 화면 중앙에 가까운 카드 하이라이트
+                const cardCenter = rect.top + rect.height / 2;
+                const windowCenter = windowHeight / 2;
+                const distanceFromCenter = Math.abs(cardCenter - windowCenter);
+                
+                if (distanceFromCenter < windowHeight / 3) {
+                    card.style.borderColor = 'var(--primary-color)';
+                    card.style.boxShadow = 'var(--shadow-lg)';
+                } else {
+                    card.style.borderColor = 'var(--border-color)';
+                    card.style.boxShadow = 'var(--shadow-md)';
+                }
             } else {
                 card.style.borderColor = 'var(--border-color)';
+                card.style.boxShadow = 'var(--shadow-md)';
             }
         });
     }, 200));
