@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🐾 한국의 애완동물
 
-## Getting Started
+한국에서 사랑받는 반려동물들을 소개하는 현대적이고 아름다운 웹사이트입니다.
 
-First, run the development server:
+## ✨ 주요 기능
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### 📋 섹션 소개
+
+1. **홈 (Hero)** 🏠
+   - 눈길을 사로잡는 그라디언트 배경
+   - 떠다니는 발자국과 하트 애니메이션
+   - 주요 통계 정보 (반려동물 보유 가구, 만족도, 입양 성공)
+
+2. **인기 반려동물** 🐶🐱
+   - 강아지: 인기 견종 5가지 소개
+   - 고양이: 인기 묘종 5가지 소개
+   - 햄스터: 다양한 종류 소개
+   - 토끼: 인기 품종 소개
+   - 각 동물별 귀여운 SVG 일러스트레이션
+
+3. **입양 안내** ❤️
+   - 6단계 입양 프로세스 안내
+   - 입양 전 체크리스트
+   - 예상 비용 정보
+
+4. **돌보기 팁** 💝
+   - 영양 공급 가이드
+   - 건강관리 정보
+   - 운동과 활동 권장사항
+   - 위생 관리 방법
+   - 사회화 훈련 팁
+   - 사랑과 관심의 중요성
+
+5. **갤러리** 📸
+   - 반려동물들의 행복한 순간들
+   - 인터랙티브한 갤러리 그리드
+
+6. **커뮤니티** 💬
+   - 반려동물 보호자 커뮤니티 소개
+   - 문의 폼 (이름, 이메일, 관심 동물, 메시지)
+
+## 🎨 디자인 특징
+
+- **컬러 팔레트**: 따뜻하고 친근한 핑크 계열 (#FF6B9D, #C44569)
+- **폰트**: Noto Sans KR (한글 최적화)
+- **애니메이션**: 
+  - 부드러운 호버 효과
+  - 스크롤 기반 애니메이션
+  - 카운터 애니메이션
+  - 떠다니는 요소들
+- **반응형**: 모바일, 태블릿, 데스크톱 완벽 지원
+
+## 🚀 사용 방법
+
+1. `index.html` 파일을 웹 브라우저로 열기
+2. 또는 라이브 서버로 실행:
+   ```bash
+   # VS Code의 Live Server 확장 사용
+   # 또는 Python 간단 서버
+   python -m http.server 8000
+   ```
+
+## 📁 파일 구조
+
+```
+project/
+│
+├── index.html       # 메인 HTML 파일
+├── styles.css       # 스타일시트
+├── script.js        # JavaScript 기능
+└── README.md        # 프로젝트 문서
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 💡 주요 기능 설명
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### JavaScript 기능
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **네비게이션**: 스크롤에 따른 활성 메뉴 표시
+- **모바일 메뉴**: 햄버거 메뉴로 반응형 네비게이션
+- **카운터 애니메이션**: 숫자가 0부터 목표치까지 증가
+- **스크롤 애니메이션**: 요소가 화면에 나타날 때 페이드인
+- **폼 유효성 검사**: 실시간 입력 검증
+- **이모지 효과**: 카드 클릭 시 귀여운 이모지 폭죽
 
-## Learn More
+### CSS 특징
 
-To learn more about Next.js, take a look at the following resources:
+- **CSS 변수**: 일관된 디자인 시스템
+- **그라디언트**: 아름다운 색상 전환
+- **박스 섀도우**: 입체감 있는 카드 디자인
+- **트랜지션**: 부드러운 상태 변화
+- **미디어 쿼리**: 완벽한 반응형 디자인
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🌐 브라우저 호환성
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Chrome (최신)
+- Firefox (최신)
+- Safari (최신)
+- Edge (최신)
 
-## Deploy on Vercel
+## 📱 반응형 브레이크포인트
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- 데스크톱: 1200px 이상
+- 태블릿: 968px ~ 1199px
+- 모바일: 640px ~ 967px
+- 소형 모바일: 640px 이하
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🎯 향후 개선 사항
+
+- [ ] 실제 이미지 갤러리 구현
+- [ ] 백엔드 API 연동
+- [ ] 사용자 계정 시스템
+- [ ] 반려동물 입양 매칭 시스템
+- [ ] 온라인 커뮤니티 게시판
+- [ ] 반려동물 건강 관리 도구
+
+## 📄 라이선스
+
+이 프로젝트는 교육 및 개인 용도로 자유롭게 사용하실 수 있습니다.
+
+## 💖 제작 정보
+
+사랑스러운 반려동물과 함께하는 행복한 삶을 위해 제작되었습니다.
+
+---
+
+**🐾 반려동물은 평생의 친구입니다. 끝까지 책임지고 사랑해주세요! ❤️**
