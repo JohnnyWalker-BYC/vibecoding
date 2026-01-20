@@ -363,6 +363,67 @@ petCards.forEach(card => {
 // 초기화
 updateNavOnTop();
 
+// 블로그 카드 스크롤 애니메이션
+const blogCards = document.querySelectorAll('.blog-card');
+blogCards.forEach(card => {
+    card.classList.add('scroll-animation');
+});
+
+// 블로그 카드 읽기 시간 업데이트 (실제 콘텐츠 길이 기반)
+document.addEventListener('DOMContentLoaded', () => {
+    const blogCards = document.querySelectorAll('.blog-card');
+    
+    blogCards.forEach(card => {
+        const content = card.querySelector('.blog-content');
+        if (content) {
+            const text = content.innerText;
+            const wordCount = text.split(/\s+/).length;
+            const readingTime = Math.ceil(wordCount / 200); // 분당 200단어 기준
+            
+            const metaTime = card.querySelector('.blog-meta span:last-child');
+            if (metaTime) {
+                metaTime.textContent = `⏱️ ${readingTime}분 읽기`;
+            }
+        }
+    });
+});
+
+// 블로그 카드 클릭 시 부드러운 확장 효과
+blogCards.forEach(card => {
+    let isExpanded = false;
+    const content = card.querySelector('.blog-content');
+    
+    if (content) {
+        const originalMaxHeight = content.style.maxHeight || 'none';
+        
+        // 초기에는 콘텐츠를 보여줌 (SEO를 위해)
+        content.style.maxHeight = 'none';
+        content.style.overflow = 'visible';
+    }
+});
+
+// 블로그 섹션 스크롤 시 읽기 진행도 표시
+let lastScrollPosition = 0;
+const blogSection = document.getElementById('blog');
+
+if (blogSection) {
+    window.addEventListener('scroll', throttle(() => {
+        const blogCards = document.querySelectorAll('.blog-card');
+        
+        blogCards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            const isInViewport = rect.top >= 0 && rect.bottom <= window.innerHeight;
+            
+            if (isInViewport) {
+                card.style.borderColor = 'var(--primary-color)';
+            } else {
+                card.style.borderColor = 'var(--border-color)';
+            }
+        });
+    }, 200));
+}
+
 // 콘솔에 귀여운 메시지 출력
-console.log('%c🐾 한국의 애완동물에 오신 것을 환영합니다! 🐾', 'color: #FF6B9D; font-size: 20px; font-weight: bold;');
-console.log('%c사랑스러운 반려동물과 함께 행복한 삶을 시작하세요! ❤️', 'color: #C44569; font-size: 14px;');
+console.log('%c🐾 한국의 애완동물에 오신 것을 환영합니다! 🐾', 'color: #4A90E2; font-size: 20px; font-weight: bold;');
+console.log('%c사랑스러운 반려동물과 함께 행복한 삶을 시작하세요! ❤️', 'color: #2E5C8A; font-size: 14px;');
+console.log('%c📚 10가지 전문 가이드를 통해 더 많은 정보를 얻으세요!', 'color: #7EC8E3; font-size: 14px;');
