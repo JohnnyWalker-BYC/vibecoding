@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://johnnywalker-byc.github.io/vibecoding/sitemap.xml

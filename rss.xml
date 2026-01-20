@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>한국의 애완동물 - 반려동물 정보 가이드</title>
+        <link>https://johnnywalker-byc.github.io/vibecoding/</link>
+        <description>강아지, 고양이, 햄스터, 토끼 등 반려동물 입양, 건강관리, 훈련 정보를 제공하는 종합 가이드</description>
+        <language>ko</language>
+        <lastBuildDate>Mon, 20 Jan 2026 00:00:00 +0900</lastBuildDate>
+        <atom:link href="https://johnnywalker-byc.github.io/vibecoding/rss.xml" rel="self" type="application/rss+xml"/>
+        <image>
+            <url>https://johnnywalker-byc.github.io/vibecoding/logo.png</url>
+            <title>한국의 애완동물</title>
+            <link>https://johnnywalker-byc.github.io/vibecoding/</link>
+        </image>
+        
+        <!-- Article 1: 건강 관리 -->
+        <item>
+            <title>반려동물 건강 관리 완벽 가이드</title>
+            <link>https://johnnywalker-byc.github.io/vibecoding/#health-guide</link>
+            <description>반려동물의 건강은 보호자의 가장 큰 관심사입니다. 정기 건강검진, 예방접종, 일상적인 건강 체크, 기생충 예방, 치아 관리, 응급상황 대처법 등 반려동물 건강 관리의 모든 것을 알아보세요.</description>
+            <pubDate>Mon, 20 Jan 2026 00:00:00 +0900</pubDate>
+            <guid>https://johnnywalker-byc.github.io/vibecoding/#health-guide</guid>
+            <category>건강관리</category>
+            <category>반려동물</category>
+            <category>예방접종</category>
+        </item>
+        
+        <!-- Article 2: 품종별 가이드 -->
+        <item>
+            <title>품종별 상세 가이드 - 소형견부터 대형견까지</title>
+            <link>https://johnnywalker-byc.github.io/vibecoding/#breed-guide</link>
+            <description>반려동물의 품종을 이해하는 것은 적절한 돌봄의 첫걸음입니다. 말티즈, 푸들, 치와와부터 골든 리트리버, 허스키까지 각 품종의 특성과 요구사항을 상세히 알아보세요.</description>
+            <pubDate>Mon, 20 Jan 2026 00:00:00 +0900</pubDate>
+            <guid>https://johnnywalker-byc.github.io/vibecoding/#breed-guide</guid>
+            <category>품종</category>
+            <category>강아지</category>
+            <category>고양이</category>
+        </item>
+        
+        <!-- Article 3: 영양 가이드 -->
+        <item>
+            <title>반려동물 영양 가이드 - 건강한 식단의 모든 것</title>
+            <link>https://johnnywalker-byc.github.io/vibecoding/#nutrition-guide</link>
+            <description>올바른 영양 공급은 반려동물의 건강한 삶을 위한 필수 요소입니다. 생애 주기별 영양 요구, 사료 선택 방법, 급여량, 간식 관리, 수분 섭취까지 완벽 가이드를 제공합니다.</description>
+            <pubDate>Mon, 20 Jan 2026 00:00:00 +0900</pubDate>
+            <guid>https://johnnywalker-byc.github.io/vibecoding/#nutrition-guide</guid>
+            <category>영양</category>
+            <category>사료</category>
+            <category>식이관리</category>
+        </item>
+        
+        <!-- Article 4: 훈련 가이드 -->
+        <item>
+            <title>훈련 및 행동 교정 가이드 - 긍정적 강화로 시작하기</title>
+            <link>https://johnnywalker-byc.github.io/vibecoding/#training-guide</link>
+            <description>올바른 훈련은 반려동물과의 행복한 공존을 위한 필수 과정입니다. 기본 명령어, 배변 훈련, 사회화, 문제 행동 교정, 산책 예절까지 단계별로 알아보세요.</description>
+            <pubDate>Mon, 20 Jan 2026 00:00:00 +0900</pubDate>
+            <guid>https://johnnywalker-byc.github.io/vibecoding/#training-guide</guid>
+            <category>훈련</category>
+            <category>행동교정</category>
+            <category>배변훈련</category>
+        </item>
+        
+        <!-- Article 5: 계절별 관리 -->
+        <item>
+            <title>계절별 반려동물 관리 팁 - 사계절 완벽 대비</title>
+            <link>https://johnnywalker-byc.github.io/vibecoding/#seasonal-care</link>
+            <description>한국의 사계절은 뚜렷하여 계절마다 반려동물 관리 방법이 달라야 합니다. 봄, 여름, 가을, 겨울 각 계절별 관리 포인트와 주의사항을 알아보세요.</description>
+            <pubDate>Mon, 20 Jan 2026 00:00:00 +0900</pubDate>
+            <guid>https://johnnywalker-byc.github.io/vibecoding/#seasonal-care</guid>
+            <category>계절관리</category>
+            <category>여름</category>
+            <category>겨울</category>
+        </item>
+        
+        <!-- Article 6: 법률 및 규정 -->
+        <item>
+            <title>반려동물 법률 및 규정 가이드 - 책임있는 보호자되기</title>
+            <link>https://johnnywalker-byc.github.io/vibecoding/#law-guide</link>
+            <description>반려동물을 키우는 보호자로서 지켜야 할 법률과 규정을 알아보세요. 동물 등록제, 외출 규칙, 배변 처리 의무, 동물 학대 금지법, 반려동물 보험까지 상세히 설명합니다.</description>
+            <pubDate>Mon, 20 Jan 2026 00:00:00 +0900</pubDate>
+            <guid>https://johnnywalker-byc.github.io/vibecoding/#law-guide</guid>
+            <category>법률</category>
+            <category>동물등록</category>
+            <category>규정</category>
+        </item>
+        
+        <!-- Article 7: 입양 후 적응 -->
+        <item>
+            <title>입양 후 적응기 가이드 - 3-3-3 규칙으로 시작하기</title>
+            <link>https://johnnywalker-byc.github.io/vibecoding/#adoption-guide</link>
+            <description>새로운 가족을 집으로 데려왔다면 적응 기간이 필요합니다. 첫 3일, 3주, 3개월의 단계별 적응 과정과 기존 반려동물과의 관계 형성 방법을 알아보세요.</description>
+            <pubDate>Mon, 20 Jan 2026 00:00:00 +0900</pubDate>
+            <guid>https://johnnywalker-byc.github.io/vibecoding/#adoption-guide</guid>
+            <category>입양</category>
+            <category>적응</category>
+            <category>분양</category>
+        </item>
+        
+        <!-- Article 8: 응급처치 -->
+        <item>
+            <title>반려동물 응급처치 가이드 - 생명을 구하는 지식</title>
+            <link>https://johnnywalker-byc.github.io/vibecoding/#emergency-guide</link>
+            <description>응급상황은 예고 없이 찾아옵니다. 기본적인 응급처치 지식으로 소중한 생명을 구할 수 있습니다. 심폐소생술, 출혈 처치, 중독 대처법, 응급 키트 준비까지 완벽 가이드입니다.</description>
+            <pubDate>Mon, 20 Jan 2026 00:00:00 +0900</pubDate>
+            <guid>https://johnnywalker-byc.github.io/vibecoding/#emergency-guide</guid>
+            <category>응급처치</category>
+            <category>CPR</category>
+            <category>안전</category>
+        </item>
+        
+        <!-- Article 9: 노령 케어 -->
+        <item>
+            <title>노령 반려동물 케어 가이드 - 행복한 노년을 위하여</title>
+            <link>https://johnnywalker-byc.github.io/vibecoding/#senior-care</link>
+            <description>반려동물도 나이가 들면 특별한 관리가 필요합니다. 노령기 징후, 식이 관리, 관절염 대처, 인지 기능 저하(치매) 관리, 감각 기능 저하 대응법을 알아보세요.</description>
+            <pubDate>Mon, 20 Jan 2026 00:00:00 +0900</pubDate>
+            <guid>https://johnnywalker-byc.github.io/vibecoding/#senior-care</guid>
+            <category>노령동물</category>
+            <category>시니어케어</category>
+            <category>관절염</category>
+        </item>
+        
+        <!-- Article 10: 용품 가이드 -->
+        <item>
+            <title>반려동물 용품 선택 가이드 - 현명한 쇼핑을 위한 팁</title>
+            <link>https://johnnywalker-byc.github.io/vibecoding/#supplies-guide</link>
+            <description>반려동물에게 필요한 용품은 다양합니다. 안전하고 실용적인 용품을 선택하는 방법을 알아보세요. 사료그릇, 침대, 목줄, 하네스, 장난감, 그루밍 용품까지 상세히 소개합니다.</description>
+            <pubDate>Mon, 20 Jan 2026 00:00:00 +0900</pubDate>
+            <guid>https://johnnywalker-byc.github.io/vibecoding/#supplies-guide</guid>
+            <category>용품</category>
+            <category>장난감</category>
+            <category>쇼핑</category>
+        </item>
+    </channel>
+</rss>
