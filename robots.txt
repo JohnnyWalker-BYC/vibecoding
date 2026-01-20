@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://johnnywalker-byc.github.io/vibecoding/sitemap.xml
+Sitemap: https://vibecoding-mauve-chi.vercel.app/sitemap.xml
