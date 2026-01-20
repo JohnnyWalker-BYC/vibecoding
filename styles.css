@@ -1,21 +1,21 @@
 /* 기본 스타일 및 변수 설정 */
 :root {
-    --primary-color: #FF6B9D;
-    --secondary-color: #C44569;
-    --accent-color: #FFC048;
+    --primary-color: #4A90E2;
+    --secondary-color: #2E5C8A;
+    --accent-color: #7EC8E3;
     --success-color: #10B981;
     --info-color: #3B82F6;
     --text-dark: #2d3748;
     --text-light: #718096;
     --background: #ffffff;
-    --background-alt: #FFF9F5;
-    --background-soft: #FFF5F7;
-    --border-color: #FFE4E9;
-    --shadow-sm: 0 2px 12px rgba(255, 107, 157, 0.08);
-    --shadow-md: 0 4px 20px rgba(255, 107, 157, 0.12);
-    --shadow-lg: 0 8px 40px rgba(255, 107, 157, 0.16);
-    --gradient: linear-gradient(135deg, #FF6B9D, #C44569);
-    --gradient-soft: linear-gradient(135deg, #FFE4E9, #FFF5F7);
+    --background-alt: #F0F8FF;
+    --background-soft: #E6F2FF;
+    --border-color: #D6E9FF;
+    --shadow-sm: 0 2px 12px rgba(74, 144, 226, 0.08);
+    --shadow-md: 0 4px 20px rgba(74, 144, 226, 0.12);
+    --shadow-lg: 0 8px 40px rgba(74, 144, 226, 0.16);
+    --gradient: linear-gradient(135deg, #4A90E2, #2E5C8A);
+    --gradient-soft: linear-gradient(135deg, #E6F2FF, #F0F8FF);
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -156,7 +156,7 @@ body {
     align-items: center;
     padding-top: 80px;
     overflow: hidden;
-    background: linear-gradient(135deg, #FF6B9D 0%, #C44569 50%, #FFC048 100%);
+    background: linear-gradient(135deg, #4A90E2 0%, #2E5C8A 50%, #7EC8E3 100%);
 }
 
 .hero-background {
