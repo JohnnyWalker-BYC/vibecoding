@@ -3,129 +3,127 @@
     <!-- Main Page -->
     <url>
         <loc>https://vibecoding-mauve-chi.vercel.app/</loc>
-        <lastmod>2026-01-20</lastmod>
-        <changefreq>weekly</changefreq>
+        <lastmod>2026-01-21</lastmod>
+        <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     
-    <!-- Main Sections -->
+    <!-- Popular Pets Page -->
     <url>
-        <loc>https://vibecoding-mauve-chi.vercel.app/#home</loc>
-        <lastmod>2026-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    
-    <url>
-        <loc>https://vibecoding-mauve-chi.vercel.app/#popular</loc>
-        <lastmod>2026-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    
-    <url>
-        <loc>https://vibecoding-mauve-chi.vercel.app/#adoption</loc>
-        <lastmod>2026-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://vibecoding-mauve-chi.vercel.app/#care</loc>
-        <lastmod>2026-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://vibecoding-mauve-chi.vercel.app/#blog</loc>
-        <lastmod>2026-01-20</lastmod>
+        <loc>https://vibecoding-mauve-chi.vercel.app/popular.html</loc>
+        <lastmod>2026-01-21</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
+        <priority>0.9</priority>
     </url>
     
+    <!-- Adoption Guide Page -->
     <url>
-        <loc>https://vibecoding-mauve-chi.vercel.app/#gallery</loc>
-        <lastmod>2026-01-20</lastmod>
+        <loc>https://vibecoding-mauve-chi.vercel.app/adoption.html</loc>
+        <lastmod>2026-01-21</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- Care Tips Page -->
+    <url>
+        <loc>https://vibecoding-mauve-chi.vercel.app/care.html</loc>
+        <lastmod>2026-01-21</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- Blog/Information Guide Page -->
+    <url>
+        <loc>https://vibecoding-mauve-chi.vercel.app/blog.html</loc>
+        <lastmod>2026-01-21</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- Gallery Page -->
+    <url>
+        <loc>https://vibecoding-mauve-chi.vercel.app/gallery.html</loc>
+        <lastmod>2026-01-21</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Community Page -->
+    <url>
+        <loc>https://vibecoding-mauve-chi.vercel.app/community.html</loc>
+        <lastmod>2026-01-21</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Blog Articles (accessible via blog.html) -->
+    <url>
+        <loc>https://vibecoding-mauve-chi.vercel.app/blog.html#health-guide</loc>
+        <lastmod>2026-01-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     
     <url>
-        <loc>https://vibecoding-mauve-chi.vercel.app/#community</loc>
-        <lastmod>2026-01-20</lastmod>
+        <loc>https://vibecoding-mauve-chi.vercel.app/blog.html#breed-guide</loc>
+        <lastmod>2026-01-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     
-    <!-- Blog Articles -->
     <url>
-        <loc>https://vibecoding-mauve-chi.vercel.app/#health-guide</loc>
-        <lastmod>2026-01-20</lastmod>
+        <loc>https://vibecoding-mauve-chi.vercel.app/blog.html#nutrition-guide</loc>
+        <lastmod>2026-01-21</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <priority>0.7</priority>
     </url>
     
     <url>
-        <loc>https://vibecoding-mauve-chi.vercel.app/#breed-guide</loc>
-        <lastmod>2026-01-20</lastmod>
+        <loc>https://vibecoding-mauve-chi.vercel.app/blog.html#training-guide</loc>
+        <lastmod>2026-01-21</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <priority>0.7</priority>
     </url>
     
     <url>
-        <loc>https://vibecoding-mauve-chi.vercel.app/#nutrition-guide</loc>
-        <lastmod>2026-01-20</lastmod>
+        <loc>https://vibecoding-mauve-chi.vercel.app/blog.html#seasonal-care</loc>
+        <lastmod>2026-01-21</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <priority>0.7</priority>
     </url>
     
     <url>
-        <loc>https://vibecoding-mauve-chi.vercel.app/#training-guide</loc>
-        <lastmod>2026-01-20</lastmod>
+        <loc>https://vibecoding-mauve-chi.vercel.app/blog.html#law-guide</loc>
+        <lastmod>2026-01-21</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <priority>0.7</priority>
     </url>
     
     <url>
-        <loc>https://vibecoding-mauve-chi.vercel.app/#seasonal-care</loc>
-        <lastmod>2026-01-20</lastmod>
+        <loc>https://vibecoding-mauve-chi.vercel.app/blog.html#adoption-guide</loc>
+        <lastmod>2026-01-21</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <priority>0.7</priority>
     </url>
     
     <url>
-        <loc>https://vibecoding-mauve-chi.vercel.app/#law-guide</loc>
-        <lastmod>2026-01-20</lastmod>
+        <loc>https://vibecoding-mauve-chi.vercel.app/blog.html#emergency-guide</loc>
+        <lastmod>2026-01-21</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <priority>0.7</priority>
     </url>
     
     <url>
-        <loc>https://vibecoding-mauve-chi.vercel.app/#adoption-guide</loc>
-        <lastmod>2026-01-20</lastmod>
+        <loc>https://vibecoding-mauve-chi.vercel.app/blog.html#senior-care</loc>
+        <lastmod>2026-01-21</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <priority>0.7</priority>
     </url>
     
     <url>
-        <loc>https://vibecoding-mauve-chi.vercel.app/#emergency-guide</loc>
-        <lastmod>2026-01-20</lastmod>
+        <loc>https://vibecoding-mauve-chi.vercel.app/blog.html#supplies-guide</loc>
+        <lastmod>2026-01-21</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    
-    <url>
-        <loc>https://vibecoding-mauve-chi.vercel.app/#senior-care</loc>
-        <lastmod>2026-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    
-    <url>
-        <loc>https://vibecoding-mauve-chi.vercel.app/#supplies-guide</loc>
-        <lastmod>2026-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <priority>0.7</priority>
     </url>
 </urlset>

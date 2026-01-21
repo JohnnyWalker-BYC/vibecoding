@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="사랑스러운 반려동물들의 행복한 순간들을 담은 갤러리. 귀여운 강아지, 고양이, 햄스터, 토끼의 다양한 모습을 만나보세요.">
+    <meta name="keywords" content="반려동물 갤러리, 애완동물 사진, 강아지 사진, 고양이 사진, 귀여운 동물">
+    <meta name="author" content="Korean Pets">
+    <title>반려동물 갤러리 - Korean Pets</title>
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="반려동물 갤러리 - Korean Pets">
+    <meta property="og:description" content="사랑스러운 반려동물들의 행복한 순간들">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vibecoding-mauve-chi.vercel.app/gallery.html">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4869625731936488" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="canonical" href="https://vibecoding-mauve-chi.vercel.app/gallery.html">
+</head>
+<body>
+    <!-- 헤더 포함 -->
+    <div id="header-placeholder"></div>
+
+    <!-- 갤러리 섹션 -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">📸 Gallery</span>
+                <h2 class="section-title">반려동물 갤러리</h2>
+                <p class="section-description">
+                    사랑스러운 반려동물들의 행복한 순간들
+                </p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <div class="placeholder-icon">🐶</div>
+                        <p>귀여운 강아지</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <div class="placeholder-icon">🐱</div>
+                        <p>사랑스러운 고양이</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <div class="placeholder-icon">🐹</div>
+                        <p>귀여운 햄스터</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <div class="placeholder-icon">🐰</div>
+                        <p>폭신한 토끼</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <div class="placeholder-icon">🐕</div>
+                        <p>산책하는 강아지</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <div class="placeholder-icon">😺</div>
+                        <p>햇볕 쬐는 고양이</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 포함 -->
+    <div id="footer-placeholder"></div>
+
+    <script src="script.js"></script>
+    <script>
+        fetch('_header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
+
+        fetch('_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+</body>
+</html>
