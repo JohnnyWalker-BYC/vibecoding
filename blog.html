@@ -28,6 +28,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4869625731936488" crossorigin="anonymous"></script>
     
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="newsletter.css">
     <link rel="canonical" href="https://vibecoding-mauve-chi.vercel.app/blog.html">
 </head>
 <body>
@@ -83,6 +84,84 @@
         </div>
     </section>
 
+    <!-- 관련 글 추천 섹션 -->
+    <section class="container">
+        <div class="related-posts">
+            <h3>💡 이런 정보도 함께 보세요!</h3>
+            <div class="related-grid">
+                <a href="popular.html" class="related-card">
+                    <div class="related-card-icon">🐾</div>
+                    <h4>인기 반려동물</h4>
+                    <p>한국에서 가장 사랑받는 반려동물들을 알아보세요</p>
+                </a>
+                <a href="adoption.html" class="related-card">
+                    <div class="related-card-icon">❤️</div>
+                    <h4>입양 안내</h4>
+                    <p>새로운 가족을 맞이하기 전 체크리스트</p>
+                </a>
+                <a href="care.html" class="related-card">
+                    <div class="related-card-icon">💝</div>
+                    <h4>돌보기 팁</h4>
+                    <p>건강하고 행복한 반려동물을 위한 필수 정보</p>
+                </a>
+                <a href="community.html" class="related-card">
+                    <div class="related-card-icon">💬</div>
+                    <h4>커뮤니티</h4>
+                    <p>반려동물 보호자들과 정보를 나눠보세요</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 업데이트 안내 배너 -->
+    <div class="update-banner">
+        매주 <strong>수요일</strong>과 <strong>토요일</strong>에 새로운 정보 가이드가 추가됩니다! 📅
+    </div>
+
+    <!-- 뉴스레터 구독 섹션 -->
+    <section class="newsletter-section">
+        <div class="newsletter-content">
+            <div class="newsletter-icon">📬</div>
+            <h2 class="newsletter-title">새 글 알림 받기</h2>
+            <p class="newsletter-description">
+                새로운 정보 가이드와 유용한 팁을<br>
+                이메일로 가장 먼저 받아보세요
+            </p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input 
+                    type="email" 
+                    class="newsletter-input" 
+                    placeholder="이메일 주소를 입력하세요"
+                    required
+                >
+                <button type="submit" class="newsletter-button">
+                    구독하기 ✨
+                </button>
+            </form>
+            <p class="newsletter-note">
+                💝 언제든지 구독을 취소할 수 있습니다
+            </p>
+        </div>
+    </section>
+
+    <!-- 소셜 공유 섹션 -->
+    <section class="container" style="text-align: center; margin: 40px auto;">
+        <h3 style="margin-bottom: 20px; color: var(--primary-color);">
+            유용한 정보를 친구들과 공유하세요! 🎉
+        </h3>
+        <div class="share-buttons">
+            <a href="#" class="share-btn share-facebook" onclick="shareFacebook(); return false;">
+                📘 페이스북
+            </a>
+            <a href="#" class="share-btn share-twitter" onclick="shareTwitter(); return false;">
+                🐦 트위터
+            </a>
+            <a href="#" class="share-btn share-link" onclick="copyLink(); return false;">
+                🔗 링크 복사
+            </a>
+        </div>
+    </section>
+
     <!-- 푸터 포함 -->
     <div id="footer-placeholder"></div>
 
@@ -99,6 +178,29 @@
             .then(data => {
                 document.getElementById('footer-placeholder').innerHTML = data;
             });
+
+        // 뉴스레터 구독
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            alert('구독해주셔서 감사합니다! 🎉\n\n새로운 정보를 ' + email + ' 주소로 보내드리겠습니다.');
+            this.reset();
+        });
+
+        // 소셜 공유 기능
+        function shareFacebook() {
+            window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank', 'width=600,height=400');
+        }
+
+        function shareTwitter() {
+            window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=반려동물 정보 가이드', '_blank', 'width=600,height=400');
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(function() {
+                alert('링크가 복사되었습니다! 📋');
+            });
+        }
     </script>
 </body>
 </html>

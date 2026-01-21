@@ -71,6 +71,7 @@
     </script>
     
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="newsletter.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Gamja+Flower&display=swap" rel="stylesheet">
@@ -149,6 +150,58 @@
         </div>
     </section>
 
+    <!-- 업데이트 안내 배너 -->
+    <div class="update-banner">
+        매주 <strong>수요일</strong>과 <strong>토요일</strong>에 새로운 반려동물 정보가 업데이트됩니다! 📅
+    </div>
+
+    <!-- 뉴스레터 구독 섹션 -->
+    <section class="newsletter-section">
+        <div class="newsletter-content">
+            <div class="newsletter-icon">📬</div>
+            <h2 class="newsletter-title">최신 정보를 받아보세요!</h2>
+            <p class="newsletter-description">
+                반려동물 케어 팁, 건강 정보, 특별 이벤트 소식을<br>
+                이메일로 가장 먼저 받아보세요
+            </p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input 
+                    type="email" 
+                    class="newsletter-input" 
+                    placeholder="이메일 주소를 입력하세요"
+                    required
+                >
+                <button type="submit" class="newsletter-button">
+                    구독하기 ✨
+                </button>
+            </form>
+            <p class="newsletter-note">
+                💝 언제든지 구독을 취소할 수 있습니다
+            </p>
+        </div>
+    </section>
+
+    <!-- 소셜 공유 섹션 -->
+    <section class="container" style="text-align: center; margin: 40px auto;">
+        <h3 style="margin-bottom: 20px; color: var(--primary-color);">
+            친구들과 공유하세요! 🎉
+        </h3>
+        <div class="share-buttons">
+            <a href="#" class="share-btn share-facebook" onclick="shareFacebook(); return false;">
+                📘 페이스북 공유
+            </a>
+            <a href="#" class="share-btn share-twitter" onclick="shareTwitter(); return false;">
+                🐦 트위터 공유
+            </a>
+            <a href="#" class="share-btn share-kakao" onclick="shareKakao(); return false;">
+                💬 카카오톡 공유
+            </a>
+            <a href="#" class="share-btn share-link" onclick="copyLink(); return false;">
+                🔗 링크 복사
+            </a>
+        </div>
+    </section>
+
     <!-- 푸터 포함 -->
     <div id="footer-placeholder"></div>
 
@@ -160,6 +213,49 @@
             .then(data => {
                 document.getElementById('footer-placeholder').innerHTML = data;
             });
+
+        // 뉴스레터 구독 처리
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            alert('구독해주셔서 감사합니다! 🎉\n\n' + email + ' 주소로 최신 정보를 보내드리겠습니다.');
+            this.reset();
+        });
+
+        // 소셜 공유 기능
+        function shareFacebook() {
+            window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank', 'width=600,height=400');
+        }
+
+        function shareTwitter() {
+            window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=한국의 애완동물 - 반려동물 정보 가이드', '_blank', 'width=600,height=400');
+        }
+
+        function shareKakao() {
+            alert('카카오톡 공유 기능은 Kakao SDK 설치 후 사용 가능합니다.\n현재는 링크 복사를 이용해주세요! 😊');
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(function() {
+                alert('링크가 복사되었습니다! 📋\n\n친구들과 공유해보세요! 😊');
+            });
+        }
+
+        // 북마크 추가 안내 (첫 방문 후 30초 후)
+        setTimeout(function() {
+            if (!localStorage.getItem('bookmarkPromptShown')) {
+                if (confirm('이 사이트가 유용하셨나요? ⭐\n\n즐겨찾기에 추가하시겠습니까?')) {
+                    if (window.sidebar && window.sidebar.addPanel) {
+                        window.sidebar.addPanel(document.title, window.location.href, '');
+                    } else if (window.external && ('AddFavorite' in window.external)) {
+                        window.external.AddFavorite(window.location.href, document.title);
+                    } else {
+                        alert('Ctrl+D (Windows) 또는 Cmd+D (Mac)를 눌러 즐겨찾기에 추가해주세요! 💝');
+                    }
+                }
+                localStorage.setItem('bookmarkPromptShown', 'true');
+            }
+        }, 30000);
     </script>
 </body>
 </html>
