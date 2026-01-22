@@ -72,6 +72,7 @@
     
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="newsletter.css">
+    <link rel="stylesheet" href="auth-modal.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Gamja+Flower&display=swap" rel="stylesheet">
@@ -93,6 +94,10 @@
                     <li><a href="blog.html" class="nav-link">정보 가이드</a></li>
                     <li><a href="gallery.html" class="nav-link">갤러리</a></li>
                     <li><a href="community.html" class="nav-link">커뮤니티</a></li>
+                    <li id="auth-buttons">
+                        <button onclick="showLoginModal()" class="btn btn-primary">로그인</button>
+                        <button onclick="showSignupModal()" class="btn btn-secondary">회원가입</button>
+                    </li>
                 </ul>
                 <div class="hamburger" id="hamburger">
                     <span></span>
@@ -205,6 +210,15 @@
     <!-- 푸터 포함 -->
     <div id="footer-placeholder"></div>
 
+    <!-- 인증 모달 포함 -->
+    <div id="auth-modal-placeholder"></div>
+
+    <!-- Supabase 클라이언트 라이브러리 -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Supabase 설정 및 인증 -->
+    <script src="supabase-config.js"></script>
+    
     <script src="script.js"></script>
     <script>
         // 푸터 로드
@@ -214,10 +228,21 @@
                 document.getElementById('footer-placeholder').innerHTML = data;
             });
 
-        // 뉴스레터 구독 처리
-        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+        // 인증 모달 로드
+        fetch('auth-modal.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('auth-modal-placeholder').innerHTML = data;
+            });
+
+        // 뉴스레터 구독 처리 (Supabase에 저장)
+        document.getElementById('newsletterForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const email = this.querySelector('input').value;
+            
+            // Supabase에 저장
+            await saveNewsletterSubscriber(email);
+            
             alert('구독해주셔서 감사합니다! 🎉\n\n' + email + ' 주소로 최신 정보를 보내드리겠습니다.');
             this.reset();
         });
