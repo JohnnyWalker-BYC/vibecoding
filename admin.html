@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>회원 관리 - Korean Pets Admin</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KRF069BCHX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KRF069BCHX');
+    </script>
+</head>
+<body>
+    <!-- 헤더 로드 -->
+    <div id="header-placeholder"></div>
+
+    <div class="admin-container">
+        <!-- 사이드바 -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>🛠️ 관리자</h2>
+                <div class="admin-info" id="admin-info">
+                    <div class="loading">로딩 중...</div>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" onclick="showSection('dashboard')">
+                    <span class="icon">📊</span>
+                    <span class="label">대시보드</span>
+                </a>
+                <a href="#users" class="nav-item" onclick="showSection('users')">
+                    <span class="icon">👥</span>
+                    <span class="label">회원 관리</span>
+                </a>
+                <a href="#newsletter" class="nav-item" onclick="showSection('newsletter')">
+                    <span class="icon">📧</span>
+                    <span class="label">뉴스레터 구독자</span>
+                </a>
+                <a href="#activity" class="nav-item" onclick="showSection('activity')">
+                    <span class="icon">📝</span>
+                    <span class="label">활동 로그</span>
+                </a>
+                <a href="#settings" class="nav-item" onclick="showSection('settings')">
+                    <span class="icon">⚙️</span>
+                    <span class="label">설정</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button onclick="handleLogout()" class="btn-logout">
+                    🚪 로그아웃
+                </button>
+            </div>
+        </aside>
+
+        <!-- 메인 컨텐츠 -->
+        <main class="admin-main">
+            <!-- 대시보드 -->
+            <section id="dashboard-section" class="admin-section active">
+                <div class="section-header">
+                    <h1>📊 대시보드</h1>
+                    <button onclick="refreshDashboard()" class="btn-refresh">🔄 새로고침</button>
+                </div>
+
+                <div class="stats-grid" id="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="total-users">-</div>
+                            <div class="stat-label">전체 회원</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="active-users">-</div>
+                            <div class="stat-label">활성 회원</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🆕</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="new-users-week">-</div>
+                            <div class="stat-label">이번 주 신규</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📧</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="newsletter-count">-</div>
+                            <div class="stat-label">뉴스레터 구독자</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>📈 최근 가입 추이</h3>
+                        <div id="recent-signups" class="chart-placeholder">
+                            데이터 로딩 중...
+                        </div>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>🔥 최근 활동</h3>
+                        <div id="recent-activity-dashboard">
+                            <div class="loading">로딩 중...</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 회원 관리 -->
+            <section id="users-section" class="admin-section">
+                <div class="section-header">
+                    <h1>👥 회원 관리</h1>
+                    <div class="header-actions">
+                        <input type="text" id="user-search" placeholder="이메일, 이름으로 검색..." class="search-input">
+                        <button onclick="searchUsers()" class="btn-primary">🔍 검색</button>
+                        <button onclick="loadUsers()" class="btn-refresh">🔄 새로고침</button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table" id="users-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>이메일</th>
+                                <th>이름</th>
+                                <th>가입일</th>
+                                <th>최근 로그인</th>
+                                <th>상태</th>
+                                <th>관리자</th>
+                                <th>작업</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-tbody">
+                            <tr>
+                                <td colspan="8" class="loading-cell">
+                                    <div class="loading">회원 목록 로딩 중...</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination" id="users-pagination">
+                    <!-- 페이지네이션 버튼이 동적으로 생성됩니다 -->
+                </div>
+            </section>
+
+            <!-- 뉴스레터 구독자 -->
+            <section id="newsletter-section" class="admin-section">
+                <div class="section-header">
+                    <h1>📧 뉴스레터 구독자</h1>
+                    <div class="header-actions">
+                        <button onclick="exportNewsletterCSV()" class="btn-secondary">📥 CSV 다운로드</button>
+                        <button onclick="loadNewsletterSubscribers()" class="btn-refresh">🔄 새로고침</button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table" id="newsletter-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>이메일</th>
+                                <th>회원 연결</th>
+                                <th>구독일</th>
+                                <th>상태</th>
+                                <th>작업</th>
+                            </tr>
+                        </thead>
+                        <tbody id="newsletter-tbody">
+                            <tr>
+                                <td colspan="6" class="loading-cell">
+                                    <div class="loading">구독자 목록 로딩 중...</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 활동 로그 -->
+            <section id="activity-section" class="admin-section">
+                <div class="section-header">
+                    <h1>📝 활동 로그</h1>
+                    <div class="header-actions">
+                        <select id="activity-filter" onchange="filterActivityLogs()" class="filter-select">
+                            <option value="all">전체</option>
+                            <option value="login">로그인</option>
+                            <option value="logout">로그아웃</option>
+                            <option value="signup">회원가입</option>
+                            <option value="profile_update">프로필 수정</option>
+                            <option value="password_change">비밀번호 변경</option>
+                        </select>
+                        <button onclick="loadActivityLogs()" class="btn-refresh">🔄 새로고침</button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table" id="activity-table">
+                        <thead>
+                            <tr>
+                                <th>시간</th>
+                                <th>사용자</th>
+                                <th>활동 유형</th>
+                                <th>설명</th>
+                                <th>IP</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activity-tbody">
+                            <tr>
+                                <td colspan="5" class="loading-cell">
+                                    <div class="loading">활동 로그 로딩 중...</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 설정 -->
+            <section id="settings-section" class="admin-section">
+                <div class="section-header">
+                    <h1>⚙️ 설정</h1>
+                </div>
+
+                <div class="settings-container">
+                    <div class="settings-card">
+                        <h3>🔑 관리자 정보</h3>
+                        <div id="admin-profile-info">
+                            <div class="loading">로딩 중...</div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>🗄️ 데이터베이스 상태</h3>
+                        <div id="database-status">
+                            <button onclick="checkDatabaseStatus()" class="btn-primary">
+                                상태 확인
+                            </button>
+                            <div id="db-status-result" class="status-result"></div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>📊 Supabase 연결</h3>
+                        <div class="connection-info">
+                            <p><strong>프로젝트 URL:</strong></p>
+                            <code>https://fgdgsbmvxiqabedctxbw.supabase.co</code>
+                            <br><br>
+                            <button onclick="testConnection()" class="btn-secondary">
+                                연결 테스트
+                            </button>
+                            <div id="connection-test-result" class="status-result"></div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>🛠️ 유지보수</h3>
+                        <div class="maintenance-actions">
+                            <button onclick="cleanupOldLogs()" class="btn-secondary">
+                                오래된 로그 정리 (30일 이상)
+                            </button>
+                            <button onclick="exportAllData()" class="btn-secondary">
+                                전체 데이터 백업
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 푸터 로드 -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // 관리자 페이지 초기화
+        let currentUser = null;
+        let allUsers = [];
+        let allNewsletterSubscribers = [];
+        let allActivityLogs = [];
+
+        // 페이지 로드 시
+        window.addEventListener('DOMContentLoaded', async () => {
+            // 헤더/푸터 로드
+            await loadHeaderFooter();
+            
+            // Supabase 초기화 대기
+            if (typeof initSupabase === 'function') {
+                initSupabase();
+            }
+            
+            // 인증 확인
+            await checkAdminAuth();
+            
+            // 대시보드 로드
+            await loadDashboard();
+        });
+
+        // 관리자 권한 확인
+        async function checkAdminAuth() {
+            try {
+                if (!window.supabase) {
+                    throw new Error('Supabase가 초기화되지 않았습니다.');
+                }
+
+                const { data: { session } } = await supabase.auth.getSession();
+                
+                if (!session) {
+                    alert('로그인이 필요합니다.');
+                    window.location.href = '/index.html';
+                    return;
+                }
+
+                currentUser = session.user;
+
+                // 프로필 확인
+                const { data: profile, error } = await supabase
+                    .from('user_profiles')
+                    .select('*')
+                    .eq('id', currentUser.id)
+                    .single();
+
+                if (error || !profile) {
+                    alert('프로필을 불러올 수 없습니다.');
+                    return;
+                }
+
+                // 관리자 권한 확인
+                if (!profile.is_admin) {
+                    alert('관리자 권한이 필요합니다.');
+                    window.location.href = '/index.html';
+                    return;
+                }
+
+                // 관리자 정보 표시
+                document.getElementById('admin-info').innerHTML = `
+                    <div class="admin-badge">👑 관리자</div>
+                    <div class="admin-email">${currentUser.email}</div>
+                `;
+
+            } catch (error) {
+                console.error('인증 확인 오류:', error);
+                alert('인증 확인 중 오류가 발생했습니다: ' + error.message);
+            }
+        }
+
+        // 섹션 전환
+        function showSection(sectionName) {
+            // 모든 섹션 숨기기
+            document.querySelectorAll('.admin-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // 모든 네비게이션 항목 비활성화
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // 선택한 섹션 표시
+            document.getElementById(sectionName + '-section').classList.add('active');
+            
+            // 선택한 네비게이션 항목 활성화
+            event.currentTarget.classList.add('active');
+
+            // 섹션별 데이터 로드
+            switch(sectionName) {
+                case 'dashboard':
+                    loadDashboard();
+                    break;
+                case 'users':
+                    loadUsers();
+                    break;
+                case 'newsletter':
+                    loadNewsletterSubscribers();
+                    break;
+                case 'activity':
+                    loadActivityLogs();
+                    break;
+                case 'settings':
+                    loadSettings();
+                    break;
+            }
+        }
+
+        // 대시보드 로드
+        async function loadDashboard() {
+            try {
+                // 통계 로드
+                const { data: stats, error: statsError } = await supabase
+                    .from('user_statistics')
+                    .select('*')
+                    .single();
+
+                if (!statsError && stats) {
+                    document.getElementById('total-users').textContent = stats.total_users || 0;
+                    document.getElementById('active-users').textContent = stats.active_users || 0;
+                    document.getElementById('new-users-week').textContent = stats.new_users_this_week || 0;
+                }
+
+                // 뉴스레터 구독자 수
+                const { count: newsletterCount } = await supabase
+                    .from('newsletter_subscribers')
+                    .select('*', { count: 'exact', head: true });
+                
+                document.getElementById('newsletter-count').textContent = newsletterCount || 0;
+
+                // 최근 활동
+                await loadRecentActivity();
+
+                // 최근 가입자
+                await loadRecentSignups();
+
+            } catch (error) {
+                console.error('대시보드 로드 오류:', error);
+            }
+        }
+
+        // 최근 활동 로드
+        async function loadRecentActivity() {
+            try {
+                const { data: activities, error } = await supabase
+                    .from('recent_user_activity')
+                    .select('*')
+                    .limit(10);
+
+                if (error) throw error;
+
+                const container = document.getElementById('recent-activity-dashboard');
+                if (!activities || activities.length === 0) {
+                    container.innerHTML = '<p class="no-data">최근 활동이 없습니다.</p>';
+                    return;
+                }
+
+                container.innerHTML = activities.map(activity => `
+                    <div class="activity-item">
+                        <span class="activity-time">${formatDate(activity.created_at)}</span>
+                        <span class="activity-user">${activity.email || '알 수 없음'}</span>
+                        <span class="activity-type">${getActivityTypeLabel(activity.activity_type)}</span>
+                    </div>
+                `).join('');
+
+            } catch (error) {
+                console.error('최근 활동 로드 오류:', error);
+                document.getElementById('recent-activity-dashboard').innerHTML = 
+                    '<p class="error">활동 로그를 불러올 수 없습니다.</p>';
+            }
+        }
+
+        // 최근 가입자 로드
+        async function loadRecentSignups() {
+            try {
+                const { data: users, error } = await supabase
+                    .from('user_profiles')
+                    .select('*')
+                    .order('created_at', { ascending: false })
+                    .limit(7);
+
+                if (error) throw error;
+
+                const container = document.getElementById('recent-signups');
+                if (!users || users.length === 0) {
+                    container.innerHTML = '<p class="no-data">최근 가입자가 없습니다.</p>';
+                    return;
+                }
+
+                // 간단한 차트 형태로 표시
+                container.innerHTML = users.map(user => `
+                    <div class="signup-item">
+                        <span class="signup-date">${formatDate(user.created_at)}</span>
+                        <span class="signup-email">${user.email}</span>
+                    </div>
+                `).join('');
+
+            } catch (error) {
+                console.error('최근 가입자 로드 오류:', error);
+            }
+        }
+
+        // 회원 목록 로드
+        async function loadUsers() {
+            try {
+                const tbody = document.getElementById('users-tbody');
+                tbody.innerHTML = '<tr><td colspan="8" class="loading-cell"><div class="loading">로딩 중...</div></td></tr>';
+
+                const { data: users, error } = await supabase
+                    .from('user_profiles')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                allUsers = users || [];
+
+                if (allUsers.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="8" class="no-data-cell">등록된 회원이 없습니다.</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = allUsers.map(user => `
+                    <tr>
+                        <td><code>${user.id.substring(0, 8)}...</code></td>
+                        <td>${user.email}</td>
+                        <td>${user.full_name || user.username || '-'}</td>
+                        <td>${formatDate(user.created_at)}</td>
+                        <td>${user.last_login_at ? formatDate(user.last_login_at) : '-'}</td>
+                        <td>
+                            <span class="badge ${user.is_active ? 'badge-success' : 'badge-danger'}">
+                                ${user.is_active ? '활성' : '비활성'}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge ${user.is_admin ? 'badge-primary' : 'badge-secondary'}">
+                                ${user.is_admin ? '✓' : '✗'}
+                            </span>
+                        </td>
+                        <td>
+                            <button onclick="viewUser('${user.id}')" class="btn-sm btn-info">👁️</button>
+                            <button onclick="editUser('${user.id}')" class="btn-sm btn-warning">✏️</button>
+                        </td>
+                    </tr>
+                `).join('');
+
+            } catch (error) {
+                console.error('회원 로드 오류:', error);
+                document.getElementById('users-tbody').innerHTML = 
+                    `<tr><td colspan="8" class="error-cell">오류: ${error.message}</td></tr>`;
+            }
+        }
+
+        // 뉴스레터 구독자 로드
+        async function loadNewsletterSubscribers() {
+            try {
+                const tbody = document.getElementById('newsletter-tbody');
+                tbody.innerHTML = '<tr><td colspan="6" class="loading-cell"><div class="loading">로딩 중...</div></td></tr>';
+
+                const { data: subscribers, error } = await supabase
+                    .from('newsletter_subscribers')
+                    .select('*')
+                    .order('subscribed_at', { ascending: false });
+
+                if (error) throw error;
+
+                allNewsletterSubscribers = subscribers || [];
+
+                if (allNewsletterSubscribers.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="6" class="no-data-cell">구독자가 없습니다.</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = allNewsletterSubscribers.map(sub => `
+                    <tr>
+                        <td><code>${sub.id.substring(0, 8)}...</code></td>
+                        <td>${sub.email}</td>
+                        <td>${sub.user_id ? '✓ 연결됨' : '✗ 비회원'}</td>
+                        <td>${formatDate(sub.subscribed_at)}</td>
+                        <td>
+                            <span class="badge ${sub.is_active ? 'badge-success' : 'badge-danger'}">
+                                ${sub.is_active ? '활성' : '비활성'}
+                            </span>
+                        </td>
+                        <td>
+                            <button onclick="unsubscribe('${sub.id}')" class="btn-sm btn-danger">🗑️</button>
+                        </td>
+                    </tr>
+                `).join('');
+
+            } catch (error) {
+                console.error('구독자 로드 오류:', error);
+                document.getElementById('newsletter-tbody').innerHTML = 
+                    `<tr><td colspan="6" class="error-cell">오류: ${error.message}</td></tr>`;
+            }
+        }
+
+        // 활동 로그 로드
+        async function loadActivityLogs() {
+            try {
+                const tbody = document.getElementById('activity-tbody');
+                tbody.innerHTML = '<tr><td colspan="5" class="loading-cell"><div class="loading">로딩 중...</div></td></tr>';
+
+                const { data: logs, error } = await supabase
+                    .from('recent_user_activity')
+                    .select('*')
+                    .limit(100);
+
+                if (error) throw error;
+
+                allActivityLogs = logs || [];
+
+                if (allActivityLogs.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="5" class="no-data-cell">활동 로그가 없습니다.</td></tr>';
+                    return;
+                }
+
+                displayActivityLogs(allActivityLogs);
+
+            } catch (error) {
+                console.error('활동 로그 로드 오류:', error);
+                document.getElementById('activity-tbody').innerHTML = 
+                    `<tr><td colspan="5" class="error-cell">오류: ${error.message}</td></tr>`;
+            }
+        }
+
+        // 활동 로그 표시
+        function displayActivityLogs(logs) {
+            const tbody = document.getElementById('activity-tbody');
+            tbody.innerHTML = logs.map(log => `
+                <tr>
+                    <td>${formatDateTime(log.created_at)}</td>
+                    <td>${log.email || '알 수 없음'}</td>
+                    <td>
+                        <span class="badge badge-info">
+                            ${getActivityTypeLabel(log.activity_type)}
+                        </span>
+                    </td>
+                    <td>${log.activity_description || '-'}</td>
+                    <td><code>${'IP 정보 없음'}</code></td>
+                </tr>
+            `).join('');
+        }
+
+        // 활동 타입 레이블
+        function getActivityTypeLabel(type) {
+            const labels = {
+                'login': '🔑 로그인',
+                'logout': '🚪 로그아웃',
+                'signup': '✨ 회원가입',
+                'profile_update': '✏️ 프로필 수정',
+                'password_change': '🔐 비밀번호 변경',
+                'newsletter_subscribe': '📧 뉴스레터 구독'
+            };
+            return labels[type] || type;
+        }
+
+        // 날짜 포맷
+        function formatDate(dateString) {
+            if (!dateString) return '-';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ko-KR');
+        }
+
+        function formatDateTime(dateString) {
+            if (!dateString) return '-';
+            const date = new Date(dateString);
+            return date.toLocaleString('ko-KR');
+        }
+
+        // 설정 로드
+        async function loadSettings() {
+            try {
+                const container = document.getElementById('admin-profile-info');
+                
+                if (currentUser) {
+                    const { data: profile } = await supabase
+                        .from('user_profiles')
+                        .select('*')
+                        .eq('id', currentUser.id)
+                        .single();
+
+                    container.innerHTML = `
+                        <div class="profile-info">
+                            <p><strong>이메일:</strong> ${currentUser.email}</p>
+                            <p><strong>가입일:</strong> ${formatDate(profile.created_at)}</p>
+                            <p><strong>로그인 횟수:</strong> ${profile.login_count || 0}회</p>
+                            <p><strong>관리자 권한:</strong> ${profile.is_admin ? '✅ 있음' : '❌ 없음'}</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('설정 로드 오류:', error);
+            }
+        }
+
+        // 데이터베이스 상태 확인
+        async function checkDatabaseStatus() {
+            const resultDiv = document.getElementById('db-status-result');
+            resultDiv.innerHTML = '<div class="loading">확인 중...</div>';
+
+            try {
+                const tables = ['user_profiles', 'user_activity_logs', 'user_sessions', 'newsletter_subscribers'];
+                const results = [];
+
+                for (const table of tables) {
+                    const { count, error } = await supabase
+                        .from(table)
+                        .select('*', { count: 'exact', head: true });
+
+                    results.push({
+                        table: table,
+                        exists: !error,
+                        count: count || 0,
+                        error: error ? error.message : null
+                    });
+                }
+
+                resultDiv.innerHTML = `
+                    <div class="status-list">
+                        ${results.map(r => `
+                            <div class="status-item ${r.exists ? 'success' : 'error'}">
+                                <strong>${r.table}</strong>: 
+                                ${r.exists ? `✅ 정상 (${r.count}개 레코드)` : `❌ 오류 - ${r.error}`}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">오류: ${error.message}</div>`;
+            }
+        }
+
+        // 연결 테스트
+        async function testConnection() {
+            const resultDiv = document.getElementById('connection-test-result');
+            resultDiv.innerHTML = '<div class="loading">테스트 중...</div>';
+
+            try {
+                const { data, error } = await supabase
+                    .from('user_profiles')
+                    .select('count', { count: 'exact', head: true });
+
+                if (error) throw error;
+
+                resultDiv.innerHTML = '<div class="success">✅ 연결 성공!</div>';
+
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">❌ 연결 실패: ${error.message}</div>`;
+            }
+        }
+
+        // CSV 다운로드
+        function exportNewsletterCSV() {
+            if (allNewsletterSubscribers.length === 0) {
+                alert('구독자가 없습니다.');
+                return;
+            }
+
+            const csv = [
+                ['ID', '이메일', '구독일', '상태'].join(','),
+                ...allNewsletterSubscribers.map(sub => [
+                    sub.id,
+                    sub.email,
+                    formatDate(sub.subscribed_at),
+                    sub.is_active ? '활성' : '비활성'
+                ].join(','))
+            ].join('\n');
+
+            const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `newsletter_subscribers_${new Date().toISOString().split('T')[0]}.csv`;
+            link.click();
+        }
+
+        // 검색
+        function searchUsers() {
+            const searchTerm = document.getElementById('user-search').value.toLowerCase();
+            if (!searchTerm) {
+                displayUsers(allUsers);
+                return;
+            }
+
+            const filtered = allUsers.filter(user => 
+                user.email.toLowerCase().includes(searchTerm) ||
+                (user.full_name && user.full_name.toLowerCase().includes(searchTerm)) ||
+                (user.username && user.username.toLowerCase().includes(searchTerm))
+            );
+
+            displayUsers(filtered);
+        }
+
+        function displayUsers(users) {
+            const tbody = document.getElementById('users-tbody');
+            if (users.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" class="no-data-cell">검색 결과가 없습니다.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = users.map(user => `
+                <tr>
+                    <td><code>${user.id.substring(0, 8)}...</code></td>
+                    <td>${user.email}</td>
+                    <td>${user.full_name || user.username || '-'}</td>
+                    <td>${formatDate(user.created_at)}</td>
+                    <td>${user.last_login_at ? formatDate(user.last_login_at) : '-'}</td>
+                    <td>
+                        <span class="badge ${user.is_active ? 'badge-success' : 'badge-danger'}">
+                            ${user.is_active ? '활성' : '비활성'}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge ${user.is_admin ? 'badge-primary' : 'badge-secondary'}">
+                            ${user.is_admin ? '✓' : '✗'}
+                        </span>
+                    </td>
+                    <td>
+                        <button onclick="viewUser('${user.id}')" class="btn-sm btn-info">👁️</button>
+                        <button onclick="editUser('${user.id}')" class="btn-sm btn-warning">✏️</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // 사용자 상세보기
+        function viewUser(userId) {
+            const user = allUsers.find(u => u.id === userId);
+            if (!user) return;
+
+            alert(`회원 정보\n\n이메일: ${user.email}\n이름: ${user.full_name || '-'}\n가입일: ${formatDate(user.created_at)}\n상태: ${user.is_active ? '활성' : '비활성'}`);
+        }
+
+        // 사용자 수정
+        function editUser(userId) {
+            alert('사용자 수정 기능은 곧 추가됩니다.');
+        }
+
+        // 구독 취소
+        async function unsubscribe(subscriberId) {
+            if (!confirm('정말 구독을 취소하시겠습니까?')) return;
+
+            try {
+                const { error } = await supabase
+                    .from('newsletter_subscribers')
+                    .delete()
+                    .eq('id', subscriberId);
+
+                if (error) throw error;
+
+                alert('구독이 취소되었습니다.');
+                loadNewsletterSubscribers();
+
+            } catch (error) {
+                alert('오류: ' + error.message);
+            }
+        }
+
+        // 활동 필터링
+        function filterActivityLogs() {
+            const filter = document.getElementById('activity-filter').value;
+            
+            if (filter === 'all') {
+                displayActivityLogs(allActivityLogs);
+                return;
+            }
+
+            const filtered = allActivityLogs.filter(log => log.activity_type === filter);
+            displayActivityLogs(filtered);
+        }
+
+        // 새로고침 함수들
+        function refreshDashboard() {
+            loadDashboard();
+        }
+
+        // 헤더/푸터 로드
+        async function loadHeaderFooter() {
+            try {
+                const headerResponse = await fetch('_header.html');
+                const headerHTML = await headerResponse.text();
+                document.getElementById('header-placeholder').innerHTML = headerHTML;
+
+                const footerResponse = await fetch('_footer.html');
+                const footerHTML = await footerResponse.text();
+                document.getElementById('footer-placeholder').innerHTML = footerHTML;
+            } catch (error) {
+                console.error('헤더/푸터 로드 오류:', error);
+            }
+        }
+
+        // 유지보수 함수들
+        function cleanupOldLogs() {
+            alert('오래된 로그 정리 기능은 곧 추가됩니다.');
+        }
+
+        function exportAllData() {
+            alert('전체 데이터 백업 기능은 곧 추가됩니다.');
+        }
+    </script>
+</body>
+</html>

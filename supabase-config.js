@@ -2,17 +2,26 @@
 const SUPABASE_URL = 'https://fgdgsbmvxiqabedctxbw.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZnZGdzYm12eGlxYWJlZGN0eGJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkwNjc0OTcsImV4cCI6MjA4NDY0MzQ5N30.TqOT3Mc4Bw2FsShVVtQ8_FjPelB22_pXHAwSPZDXtME';
 
-// Supabase 클라이언트 초기화
+// Supabase 클라이언트 초기화 (전역 변수)
 let supabase;
 
 // Supabase 클라이언트 로드
 function initSupabase() {
-    if (typeof window.supabase !== 'undefined') {
-        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    // Supabase 라이브러리에서 createClient 함수 가져오기
+    const { createClient } = window.supabase || {};
+    
+    if (createClient) {
+        // 전역 supabase 변수에 클라이언트 할당
+        supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        window.supabase = supabase; // 다른 스크립트에서도 접근 가능하도록
         console.log('✅ Supabase 클라이언트 초기화 완료');
-        checkAuthState();
+        console.log('📡 Supabase URL:', supabase.supabaseUrl);
+        if (typeof checkAuthState === 'function') {
+            checkAuthState();
+        }
     } else {
         console.error('❌ Supabase 클라이언트 라이브러리를 로드할 수 없습니다');
+        console.error('window.supabase:', window.supabase);
     }
 }
 
