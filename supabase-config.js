@@ -1,8 +1,6 @@
 // Supabase 설정
 const SUPABASE_URL = 'https://fgdgsbmvxiqabedctxbw.supabase.co';
-// TODO: Supabase 대시보드에서 anon key를 가져와서 여기에 입력하세요
-// Project Settings > API > Project API keys > anon public
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZnZGdzYm12eGlxYWJlZGN0eGJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkwNjc0OTcsImV4cCI6MjA4NDY0MzQ5N30.TqOT3Mc4Bw2FsShVVtQ8_FjPelB22_pXHAwSPZDXtME';
 
 // Supabase 클라이언트 초기화
 let supabase;
