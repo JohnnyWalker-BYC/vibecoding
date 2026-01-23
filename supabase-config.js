@@ -2,18 +2,25 @@
 const SUPABASE_URL = 'https://fgdgsbmvxiqabedctxbw.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZnZGdzYm12eGlxYWJlZGN0eGJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkwNjc0OTcsImV4cCI6MjA4NDY0MzQ5N30.TqOT3Mc4Bw2FsShVVtQ8_FjPelB22_pXHAwSPZDXtME';
 
-// Supabase 클라이언트 초기화 (전역 변수)
-let supabase;
+// Supabase 클라이언트 초기화 (전역 변수, 이미 있으면 재사용)
+let supabase = window.supabaseClient || null;
 
 // Supabase 클라이언트 로드
 function initSupabase() {
+    // 이미 초기화되었으면 건너뛰기
+    if (window.supabaseClient) {
+        console.log('✅ Supabase 이미 초기화됨');
+        supabase = window.supabaseClient;
+        return;
+    }
+
     // Supabase 라이브러리에서 createClient 함수 가져오기
-    const { createClient } = window.supabase || {};
+    const supabaseLib = window.supabase;
     
-    if (createClient) {
-        // 전역 supabase 변수에 클라이언트 할당
-        supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        window.supabase = supabase; // 다른 스크립트에서도 접근 가능하도록
+    if (supabaseLib && supabaseLib.createClient) {
+        // 전역 supabase 클라이언트 생성
+        supabase = supabaseLib.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        window.supabaseClient = supabase; // 다른 스크립트에서도 접근 가능하도록
         console.log('✅ Supabase 클라이언트 초기화 완료');
         console.log('📡 Supabase URL:', supabase.supabaseUrl);
         if (typeof checkAuthState === 'function') {
@@ -27,6 +34,11 @@ function initSupabase() {
 
 // 인증 상태 확인
 async function checkAuthState() {
+    if (!supabase) {
+        console.warn('⚠️ Supabase 클라이언트가 초기화되지 않았습니다');
+        return;
+    }
+    
     const { data: { session } } = await supabase.auth.getSession();
     
     if (session) {
@@ -174,8 +186,12 @@ async function saveNewsletterSubscriber(email) {
 if (typeof window !== 'undefined') {
     window.addEventListener('DOMContentLoaded', () => {
         // Supabase 라이브러리가 로드되면 초기화
-        if (typeof window.supabase !== 'undefined') {
-            initSupabase();
-        }
+        setTimeout(() => {
+            if (typeof window.supabase !== 'undefined') {
+                initSupabase();
+            } else {
+                console.warn('⚠️ Supabase 라이브러리가 로드되지 않았습니다');
+            }
+        }, 100);
     });
 }
