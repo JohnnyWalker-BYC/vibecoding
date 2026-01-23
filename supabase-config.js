@@ -1,9 +1,13 @@
-// Supabase 설정
-const SUPABASE_URL = 'https://fgdgsbmvxiqabedctxbw.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZnZGdzYm12eGlxYWJlZGN0eGJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkwNjc0OTcsImV4cCI6MjA4NDY0MzQ5N30.TqOT3Mc4Bw2FsShVVtQ8_FjPelB22_pXHAwSPZDXtME';
+// Supabase 설정 (이미 정의되어 있으면 재사용)
+if (typeof SUPABASE_URL === 'undefined') {
+    var SUPABASE_URL = 'https://fgdgsbmvxiqabedctxbw.supabase.co';
+}
+if (typeof SUPABASE_ANON_KEY === 'undefined') {
+    var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZnZGdzYm12eGlxYWJlZGN0eGJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkwNjc0OTcsImV4cCI6MjA4NDY0MzQ5N30.TqOT3Mc4Bw2FsShVVtQ8_FjPelB22_pXHAwSPZDXtME';
+}
 
 // Supabase 클라이언트 초기화 (전역 변수, 이미 있으면 재사용)
-let supabase = window.supabaseClient || null;
+var supabase = window.supabaseClient || null;
 
 // Supabase 클라이언트 로드
 function initSupabase() {

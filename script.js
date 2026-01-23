@@ -144,36 +144,38 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // 연락처 폼 제출 처리
 const contactForm = document.getElementById('contactForm');
 
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // 폼 데이터 가져오기
-    const formData = new FormData(contactForm);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const petType = formData.get('pet-type');
-    const message = formData.get('message');
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // 폼 데이터 가져오기
+        const formData = new FormData(contactForm);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const petType = formData.get('pet-type');
+        const message = formData.get('message');
 
-    // 여기서 실제로는 서버로 데이터를 전송해야 합니다
-    // 현재는 콘솔에 출력하고 알림을 표시합니다
-    console.log('문의 내용:', { name, email, petType, message });
+        // 여기서 실제로는 서버로 데이터를 전송해야 합니다
+        // 현재는 콘솔에 출력하고 알림을 표시합니다
+        console.log('문의 내용:', { name, email, petType, message });
 
-    // 성공 메시지 표시
-    const petTypeText = {
-        'dog': '강아지',
-        'cat': '고양이',
-        'hamster': '햄스터',
-        'rabbit': '토끼',
-        'other': '기타'
-    };
+        // 성공 메시지 표시
+        const petTypeText = {
+            'dog': '강아지',
+            'cat': '고양이',
+            'hamster': '햄스터',
+            'rabbit': '토끼',
+            'other': '기타'
+        };
 
-    const selectedPet = petTypeText[petType] || '반려동물';
-    
-    alert(`🐾 ${name}님, 문의가 성공적으로 접수되었습니다!\n\n${selectedPet}에 대한 정보를 ${email}로 보내드리겠습니다.\n\n행복한 반려동물과의 만남을 기대해주세요! ❤️`);
+        const selectedPet = petTypeText[petType] || '반려동물';
+        
+        alert(`🐾 ${name}님, 문의가 성공적으로 접수되었습니다!\n\n${selectedPet}에 대한 정보를 ${email}로 보내드리겠습니다.\n\n행복한 반려동물과의 만남을 기대해주세요! ❤️`);
 
-    // 폼 초기화
-    contactForm.reset();
-});
+        // 폼 초기화
+        contactForm.reset();
+    });
+}
 
 // 반려동물 카드 호버 효과 강화
 const petCards = document.querySelectorAll('.pet-card');
@@ -243,23 +245,27 @@ formInputs.forEach(input => {
 
 // 이메일 유효성 검사
 const emailInput = document.getElementById('email');
-emailInput.addEventListener('blur', function() {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (this.value && !emailPattern.test(this.value)) {
-        this.style.borderColor = '#f56565';
-    } else if (this.value) {
-        this.style.borderColor = '#10B981';
-    }
-});
+if (emailInput) {
+    emailInput.addEventListener('blur', function() {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (this.value && !emailPattern.test(this.value)) {
+            this.style.borderColor = '#f56565';
+        } else if (this.value) {
+            this.style.borderColor = '#10B981';
+        }
+    });
+}
 
 // 로고 클릭 시 맨 위로 스크롤
 const logo = document.querySelector('.logo');
-logo.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+if (logo) {
+    logo.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
-});
+}
 
 // 성능 최적화: 스크롤 이벤트 쓰로틀링
 function throttle(func, wait) {
