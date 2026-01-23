@@ -228,11 +228,38 @@
                 document.getElementById('footer-placeholder').innerHTML = data;
             });
 
+        // 전역 모달 함수 미리 정의 (auth-modal.html 로드 전에도 작동하도록)
+        window.showLoginModal = function() {
+            const modal = document.getElementById('loginModal');
+            if (modal) {
+                closeModal();
+                modal.classList.add('active');
+            }
+        };
+
+        window.showSignupModal = function() {
+            const modal = document.getElementById('signupModal');
+            if (modal) {
+                closeModal();
+                modal.classList.add('active');
+            }
+        };
+
+        window.closeModal = function() {
+            document.querySelectorAll('.auth-modal-overlay').forEach(modal => {
+                modal.classList.remove('active');
+            });
+        };
+
         // 인증 모달 로드
         fetch('auth-modal.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('auth-modal-placeholder').innerHTML = data;
+                console.log('✅ 인증 모달 로드 완료');
+            })
+            .catch(error => {
+                console.error('❌ 인증 모달 로드 실패:', error);
             });
 
         // 뉴스레터 구독 처리 (Supabase에 저장)
